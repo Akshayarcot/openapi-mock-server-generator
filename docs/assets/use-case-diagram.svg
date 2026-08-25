@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.12" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0D9488" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D97706" />
+    </marker>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#EDF2F7" />
+    </linearGradient>
+    <linearGradient id="box-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F8FAFC" />
+    </linearGradient>
+    <linearGradient id="uc-main-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" />
+      <stop offset="100%" stop-color="#DBEAFE" />
+    </linearGradient>
+    <linearGradient id="uc-inc-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="100%" stop-color="#DCFCE7" />
+    </linearGradient>
+    <linearGradient id="uc-ext-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB" />
+      <stop offset="100%" stop-color="#FEF3C7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1000" height="680" fill="url(#bg-grad)" rx="12" />
+
+  <!-- Diagram Title Header -->
+  <rect x="0" y="0" width="1000" height="55" fill="#1E293B" rx="12" />
+  <rect x="0" y="45" width="1000" height="10" fill="#1E293B" />
+  <text x="500" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+    UML Use Case Diagram: OpenAPI Mock Server Generator
+  </text>
+
+  <!-- System Boundary Box -->
+  <rect x="230" y="75" width="540" height="580" fill="url(#box-grad)" stroke="#3B82F6" stroke-width="2" stroke-dasharray="6,4" rx="8" filter="url(#shadow)" />
+  <rect x="230" y="75" width="540" height="32" fill="#3B82F6" rx="6" />
+  <text x="500" y="97" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+    System Boundary: OpenAPI Mock Server Generator
+  </text>
+
+  <!-- ==================== ACTORS (LEFT & RIGHT) ==================== -->
+  
+  <!-- Actor 1: API Developer (Left Top) -->
+  <g transform="translate(90, 150)" id="actor-dev">
+    <!-- Stick Figure -->
+    <circle cx="0" cy="-35" r="14" fill="#E2E8F0" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="0" y1="-21" x2="0" y2="12" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="-22" y1="-8" x2="22" y2="-8" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="0" y1="12" x2="-18" y2="38" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="0" y1="12" x2="18" y2="38" stroke="#1E293B" stroke-width="2.5" />
+    <text x="0" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="bold" fill="#0F172A" text-anchor="middle">«actor»</text>
+    <text x="0" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1E40AF" text-anchor="middle">API Developer</text>
+  </g>
+
+  <!-- Actor 2: QA Engineer (Left Bottom) -->
+  <g transform="translate(90, 430)" id="actor-qa">
+    <!-- Stick Figure -->
+    <circle cx="0" cy="-35" r="14" fill="#E2E8F0" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="0" y1="-21" x2="0" y2="12" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="-22" y1="-8" x2="22" y2="-8" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="0" y1="12" x2="-18" y2="38" stroke="#1E293B" stroke-width="2.5" />
+    <line x1="0" y1="12" x2="18" y2="38" stroke="#1E293B" stroke-width="2.5" />
+    <text x="0" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="bold" fill="#0F172A" text-anchor="middle">«actor»</text>
+    <text x="0" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1E40AF" text-anchor="middle">QA Engineer</text>
+  </g>
+
+  <!-- Actor 3: CI/CD Pipeline (Right Middle) -->
+  <g transform="translate(900, 290)" id="actor-cicd">
+    <!-- Robot / Server / Stick Figure -->
+    <circle cx="0" cy="-35" r="14" fill="#E2E8F0" stroke="#475569" stroke-width="2.5" />
+    <line x1="0" y1="-21" x2="0" y2="12" stroke="#475569" stroke-width="2.5" />
+    <line x1="-22" y1="-8" x2="22" y2="-8" stroke="#475569" stroke-width="2.5" />
+    <line x1="0" y1="12" x2="-18" y2="38" stroke="#475569" stroke-width="2.5" />
+    <line x1="0" y1="12" x2="18" y2="38" stroke="#475569" stroke-width="2.5" />
+    <text x="0" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#475569" text-anchor="middle">«system actor»</text>
+    <text x="0" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">CI/CD Pipeline</text>
+  </g>
+
+  <!-- ==================== USE CASE OVALS ==================== -->
+
+  <!-- UC-01: Ingest OpenAPI Specification -->
+  <g id="uc-01" transform="translate(370, 150)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-main-grad)" stroke="#2563EB" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">UC-01: Ingest OpenAPI</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Specification (YAML/JSON)</text>
+  </g>
+
+  <!-- UC-02: Parse & Validate OpenAPI Schema (Included) -->
+  <g id="uc-02" transform="translate(635, 150)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-inc-grad)" stroke="#0D9488" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#115E59" text-anchor="middle">UC-02: Parse &amp; Validate</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#115E59" text-anchor="middle">OpenAPI Schema</text>
+  </g>
+
+  <!-- UC-03: Generate Dynamic Mock Endpoints -->
+  <g id="uc-03" transform="translate(370, 245)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-main-grad)" stroke="#2563EB" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">UC-03: Generate Dynamic</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Mock Endpoints</text>
+  </g>
+
+  <!-- UC-04: Process Mock API Request -->
+  <g id="uc-04" transform="translate(370, 360)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-main-grad)" stroke="#2563EB" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">UC-04: Process Mock</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">API Request</text>
+  </g>
+
+  <!-- UC-05: Validate Request Schema (Included) -->
+  <g id="uc-05" transform="translate(635, 360)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-inc-grad)" stroke="#0D9488" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#115E59" text-anchor="middle">UC-05: Validate Request</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#115E59" text-anchor="middle">Schema &amp; Params</text>
+  </g>
+
+  <!-- UC-06: Simulate Configurable Latency (Extends UC-04) -->
+  <g id="uc-06" transform="translate(635, 460)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-ext-grad)" stroke="#D97706" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#92400E" text-anchor="middle">UC-06: Simulate Configurable</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#92400E" text-anchor="middle">Latency &amp; Jitter</text>
+  </g>
+
+  <!-- UC-07: Emulate HTTP Error Scenarios (Extends UC-04) -->
+  <g id="uc-07" transform="translate(635, 560)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-ext-grad)" stroke="#D97706" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#92400E" text-anchor="middle">UC-07: Emulate HTTP</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#92400E" text-anchor="middle">Error Codes &amp; Faults</text>
+  </g>
+
+  <!-- UC-08: Inspect Server Logs & Metrics -->
+  <g id="uc-08" transform="translate(370, 520)" filter="url(#shadow)">
+    <ellipse cx="0" cy="0" rx="110" ry="26" fill="url(#uc-main-grad)" stroke="#2563EB" stroke-width="2" />
+    <text x="0" y="-3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">UC-08: Inspect Server</text>
+    <text x="0" y="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#1E3A8A" text-anchor="middle">Logs &amp; Metrics</text>
+  </g>
+
+
+  <!-- ==================== RELATIONSHIPS & CONNECTORS ==================== -->
+
+  <!-- Actor Associations (Solid Lines) -->
+  <!-- Dev to UC-01 -->
+  <line x1="125" y1="150" x2="260" y2="150" stroke="#475569" stroke-width="1.8" />
+  <!-- Dev to UC-03 -->
+  <line x1="125" y1="165" x2="270" y2="235" stroke="#475569" stroke-width="1.8" />
+  <!-- Dev to UC-04 -->
+  <line x1="125" y1="180" x2="280" y2="340" stroke="#475569" stroke-width="1.8" />
+  <!-- Dev to UC-08 -->
+  <line x1="110" y1="200" x2="280" y2="505" stroke="#475569" stroke-width="1.8" />
+
+  <!-- QA to UC-01 -->
+  <line x1="110" y1="380" x2="280" y2="170" stroke="#475569" stroke-width="1.8" />
+  <!-- QA to UC-04 -->
+  <line x1="125" y1="410" x2="275" y2="375" stroke="#475569" stroke-width="1.8" />
+  <!-- QA to UC-06 -->
+  <line x1="125" y1="440" x2="530" y2="465" stroke="#475569" stroke-width="1.8" />
+  <!-- QA to UC-07 -->
+  <line x1="125" y1="455" x2="530" y2="555" stroke="#475569" stroke-width="1.8" />
+  <!-- QA to UC-08 -->
+  <line x1="125" y1="470" x2="275" y2="515" stroke="#475569" stroke-width="1.8" />
+
+  <!-- CI/CD to UC-01 -->
+  <line x1="865" y1="270" x2="480" y2="150" stroke="#475569" stroke-width="1.8" />
+  <!-- CI/CD to UC-04 -->
+  <line x1="865" y1="300" x2="480" y2="360" stroke="#475569" stroke-width="1.8" />
+
+  <!-- Stereotype <<include>> UC-01 -> UC-02 -->
+  <line x1="480" y1="150" x2="520" y2="150" stroke="#0D9488" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-blue)" />
+  <rect x="475" y="132" width="68" height="18" fill="#FFFFFF" rx="3" stroke="#CCFBF1" stroke-width="1"/>
+  <text x="509" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="bold" fill="#0D9488" text-anchor="middle">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Stereotype <<include>> UC-03 -> UC-02 -->
+  <path d="M 460 225 Q 520 185 545 170" fill="none" stroke="#0D9488" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-blue)" />
+  <rect x="470" y="188" width="68" height="18" fill="#FFFFFF" rx="3" stroke="#CCFBF1" stroke-width="1"/>
+  <text x="504" y="201" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="bold" fill="#0D9488" text-anchor="middle">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Stereotype <<include>> UC-04 -> UC-05 -->
+  <line x1="480" y1="360" x2="520" y2="360" stroke="#0D9488" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-blue)" />
+  <rect x="475" y="342" width="68" height="18" fill="#FFFFFF" rx="3" stroke="#CCFBF1" stroke-width="1"/>
+  <text x="509" y="355" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="bold" fill="#0D9488" text-anchor="middle">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Stereotype <<extend>> UC-06 -> UC-04 -->
+  <path d="M 545 440 Q 470 410 450 388" fill="none" stroke="#D97706" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-orange)" />
+  <rect x="475" y="415" width="68" height="18" fill="#FFFFFF" rx="3" stroke="#FEF3C7" stroke-width="1"/>
+  <text x="509" y="428" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="bold" fill="#D97706" text-anchor="middle">&lt;&lt;extend&gt;&gt;</text>
+
+  <!-- Stereotype <<extend>> UC-07 -> UC-04 -->
+  <path d="M 550 540 Q 460 480 435 390" fill="none" stroke="#D97706" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-orange)" />
+  <rect x="460" y="475" width="68" height="18" fill="#FFFFFF" rx="3" stroke="#FEF3C7" stroke-width="1"/>
+  <text x="494" y="488" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="bold" fill="#D97706" text-anchor="middle">&lt;&lt;extend&gt;&gt;</text>
+
+  <!-- ==================== LEGEND ==================== -->
+  <g transform="translate(245, 615)">
+    <rect x="0" y="0" width="510" height="32" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="6" />
+    <!-- Include Legend -->
+    <line x1="15" y1="16" x2="45" y2="16" stroke="#0D9488" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-blue)" />
+    <text x="55" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#134E4A">&lt;&lt;include&gt;&gt; Mandatory sub-flow</text>
+    
+    <!-- Extend Legend -->
+    <line x1="220" y1="16" x2="250" y2="16" stroke="#D97706" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-orange)" />
+    <text x="260" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#78350F">&lt;&lt;extend&gt;&gt; Conditional extension</text>
+
+    <!-- Actor Line Legend -->
+    <line x1="420" y1="16" x2="450" y2="16" stroke="#475569" stroke-width="1.8" />
+    <text x="458" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#334155">Association</text>
+  </g>
+
+</svg>

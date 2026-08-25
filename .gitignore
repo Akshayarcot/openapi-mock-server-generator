@@ -1,0 +1,14 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Node / Python / Temp
+node_modules/
+__pycache__/
+*.pyc
+*.log
+.env
+.idea/
+.vscode/
+dist/
+build/
