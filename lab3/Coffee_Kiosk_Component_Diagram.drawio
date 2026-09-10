@@ -1,0 +1,68 @@
+<mxfile host="app.diagrams.net" modified="2026-09-10T16:25:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="coffee-kiosk-component" name="Coffee Kiosk Component Diagram">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="Coffee Kiosk System — UML Component Diagram&#xa;Architectural Pattern: 3-Tier Layered Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="560" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Presentation Layer -->
+        <mxCell id="layer_pres" value="Presentation Layer" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=#EFF6FF;strokeColor=#3B82F6;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#1E3A8A;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="1040" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comp_ui" value="&amp;laquo;component&amp;raquo;&#xa;&lt;b&gt;User Interface Component&lt;/b&gt;&#xa;&lt;i&gt;(Touch Screen Handler &amp;bull; Menu &amp;bull; Sizes)&lt;/i&gt;" style="shape=module;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontSize=12;" vertex="1" parent="layer_pres">
+          <mxGeometry x="380" y="45" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Business Layer -->
+        <mxCell id="layer_biz" value="Business Layer" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=#F0FDF4;strokeColor=#10B981;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#065F46;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="60" y="270" width="1040" height="300" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comp_om" value="&amp;laquo;component&amp;raquo;&#xa;&lt;b&gt;Order Manager Component&lt;/b&gt;&#xa;&lt;i&gt;(Workflow &amp;bull; Pricing &amp;bull; State Machine)&lt;/i&gt;" style="shape=module;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontSize=12;" vertex="1" parent="layer_biz">
+          <mxGeometry x="380" y="50" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comp_pay" value="&amp;laquo;component&amp;raquo;&#xa;&lt;b&gt;Payment Service Component&lt;/b&gt;&#xa;&lt;i&gt;(Credit Card Only &amp;bull; PCI-DSS Gateway)&lt;/i&gt;" style="shape=module;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontSize=12;" vertex="1" parent="layer_biz">
+          <mxGeometry x="60" y="190" width="270" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comp_print" value="&amp;laquo;component&amp;raquo;&#xa;&lt;b&gt;Receipt Printer Component&lt;/b&gt;&#xa;&lt;i&gt;(ESC/POS Hardware Protocol &amp;bull; Formatter)&lt;/i&gt;" style="shape=module;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontSize=12;" vertex="1" parent="layer_biz">
+          <mxGeometry x="390" y="190" width="260" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Data Layer -->
+        <mxCell id="layer_data" value="Data Layer" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=#FAF5FF;strokeColor=#8B5CF6;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#5B21B6;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="60" y="600" width="1040" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comp_db" value="&amp;laquo;component&amp;raquo;&#xa;&lt;b&gt;Database Component&lt;/b&gt;&#xa;&lt;i&gt;(Menu Catalog &amp;bull; Pricing &amp;bull; Orders Table)&lt;/i&gt;" style="shape=module;jettyWidth=8;jettyHeight=4;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#7C3AED;strokeWidth=2;fontSize=12;" vertex="1" parent="layer_data">
+          <mxGeometry x="720" y="45" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Connectors & Interfaces -->
+        <mxCell id="edge_ui_om" value="Order Interface&#xa;[Touch IPC / GUI Events]" style="endArrow=oval;endFill=1;startArrow=halfCircle;startFill=0;strokeWidth=2;strokeColor=#1E3A8A;fontColor=#1E3A8A;fontSize=11;fontStyle=1;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="comp_ui" target="comp_om">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_om_pay" value="Payment Interface&#xa;[PCI-DSS Card API]" style="endArrow=oval;endFill=1;startArrow=halfCircle;startFill=0;strokeWidth=2;strokeColor=#1E3A8A;fontColor=#1E3A8A;fontSize=11;fontStyle=1;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="comp_om" target="comp_pay">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_om_print" value="Receipt Interface&#xa;[ESC/POS Hardware Driver]" style="endArrow=oval;endFill=1;startArrow=halfCircle;startFill=0;strokeWidth=2;strokeColor=#1E3A8A;fontColor=#1E3A8A;fontSize=11;fontStyle=1;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="comp_om" target="comp_print">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_om_db" value="Database Interface&#xa;[SQL / ORM Query]" style="endArrow=oval;endFill=1;startArrow=halfCircle;startFill=0;strokeWidth=2;strokeColor=#1E3A8A;fontColor=#1E3A8A;fontSize=11;fontStyle=1;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="comp_om" target="comp_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
