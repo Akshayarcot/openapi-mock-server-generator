@@ -12,3 +12,6 @@ __pycache__/
 .vscode/
 dist/
 build/
+.hypothesis/
+.pytest_cache/
+.coverage
