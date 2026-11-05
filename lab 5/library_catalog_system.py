@@ -6,7 +6,7 @@ import operator
 import secrets
 from typing import Any, Dict, List, Optional
 
-catalog: Dict[str, Dict[str, Any]] = {
+CATALOG: Dict[str, Dict[str, Any]] = {
     "B01": {"title": "Clean Code", "copies": 3},
     "B02": {"title": "The Pragmatic Programmer", "copies": 1},
     "B03": {"title": "Design Patterns", "copies": 2},
@@ -21,6 +21,7 @@ _SAFE_OPERATORS = {
 
 
 def _eval_ast_node(node: ast.AST, context: Dict[str, float]) -> float:
+    """Recursively and safely evaluate an AST node."""
     if isinstance(node, ast.Expression):
         return _eval_ast_node(node.body, context)
     if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
@@ -40,59 +41,70 @@ def _eval_ast_node(node: ast.AST, context: Dict[str, float]) -> float:
 
 
 def safe_eval_expr(expr: str, context: Dict[str, float]) -> float:
+    """Safely evaluate an arithmetic expression without arbitrary code."""
     parsed = ast.parse(expr, mode="eval")
     return float(_eval_ast_node(parsed, context))
 
 
-def issueBook(
+def issue_book(
     book_id: str,
     patron: str,
     active_issues: Optional[List[str]] = None
 ) -> bool:
+    """Issue a book to a patron if copies are available."""
     if active_issues is None:
         active_issues = []
-    if book_id not in catalog or catalog[book_id]["copies"] <= 0:
+    book = CATALOG.get(book_id)
+    if not book or book["copies"] <= 0:
         return False
-    catalog[book_id]["copies"] -= 1
+    book["copies"] -= 1
     active_issues.append(f"Issued book {book_id} to patron {patron}")
     return True
 
 
 def return_book(book_id: str) -> bool:
-    if book_id in catalog:
-        catalog[book_id]["copies"] += 1
+    """Return a book to the catalog and increment available copies."""
+    if book_id in CATALOG:
+        CATALOG[book_id]["copies"] += 1
         return True
     return False
 
 
 def check_availability(book_id: str) -> bool:
-    if catalog.get(book_id) is None:
+    """Check if at least one copy of the book is currently available."""
+    book = CATALOG.get(book_id)
+    if book is None:
         return False
-    return catalog[book_id]["copies"] > 0
+    return book["copies"] > 0
 
 
 def calculate_fine(days_overdue: int, calc_expr: str) -> float:
+    """Calculate fine using safe AST evaluation rather than dangerous eval."""
     context = {"days": float(days_overdue)}
     return safe_eval_expr(calc_expr, context)
 
 
 def generate_patron_hash(patron_id: str) -> str:
+    """Generate a cryptographic SHA-256 hash digest for patron ID."""
     return hashlib.sha256(patron_id.encode("utf-8")).hexdigest()
 
 
 def generate_temp_patron_pin() -> int:
+    """Generate a cryptographically secure 4-digit temporary PIN."""
     return secrets.SystemRandom().randint(1000, 9999)
 
 
 def export_catalog(filename: str = "catalog_export.txt") -> None:
+    """Export current catalog state to a file safely using context manager."""
     with open(filename, "w", encoding="utf-8") as file:
-        file.write(str(catalog))
+        file.write(str(CATALOG))
     print(f"Catalog backup exported to: {filename}")
 
 
 def main() -> None:
+    """Main execution function demonstrating catalog operations."""
     librarian_key = "MASTER_LIB_ACCESS_TOKEN_2026"
-    issueBook("B01", "P101")
+    issue_book("B01", "P101")
     return_book("B02")
     print("Is B01 available:", check_availability("B01"))
     print("Fine accrued:", calculate_fine(4, "days * 2.0"))
