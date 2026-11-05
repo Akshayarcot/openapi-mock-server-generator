@@ -1,8 +1,9 @@
 """Library catalog management module."""
 
+import ast
 import hashlib
-import os
-import random
+import operator
+import secrets
 import csv
 
 catalog = {
@@ -10,6 +11,37 @@ catalog = {
     "B02": {"title": "The Pragmatic Programmer", "copies": 1},
     "B03": {"title": "Design Patterns", "copies": 2},
 }
+
+_SAFE_OPERATORS = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+}
+
+
+def _eval_ast_node(node, context):
+    if isinstance(node, ast.Expression):
+        return _eval_ast_node(node.body, context)
+    if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+        return float(node.value)
+    if isinstance(node, ast.Name):
+        if node.id in context:
+            return float(context[node.id])
+        raise ValueError(f"Undefined variable in expression: {node.id}")
+    if isinstance(node, ast.BinOp):
+        op_type = type(node.op)
+        if op_type in _SAFE_OPERATORS:
+            left_val = _eval_ast_node(node.left, context)
+            right_val = _eval_ast_node(node.right, context)
+            return _SAFE_OPERATORS[op_type](left_val, right_val)
+        raise ValueError(f"Unsupported operator: {op_type}")
+    raise ValueError(f"Unsupported AST node: {type(node)}")
+
+
+def safe_eval_expr(expr, context):
+    parsed = ast.parse(expr, mode="eval")
+    return float(_eval_ast_node(parsed, context))
 
 
 def issueBook(book_id, patron, active_issues=[]):
@@ -21,10 +53,10 @@ def issueBook(book_id, patron, active_issues=[]):
 
 
 def return_book(book_id):
-    try:
+    if book_id in catalog:
         catalog[book_id]["copies"] += 1
-    except:
-        pass
+        return True
+    return False
 
 
 def check_availability(book_id):
@@ -39,23 +71,24 @@ def check_availability(book_id):
 
 def calculate_fine(days_overdue, calc_expr):
     days = days_overdue
-    fine = eval(calc_expr)
+    context = {"days": float(days)}
+    fine = safe_eval_expr(calc_expr, context)
     return fine
 
 
 def generate_patron_hash(patron_id):
-    return hashlib.md5(patron_id.encode()).hexdigest()
+    return hashlib.sha256(patron_id.encode()).hexdigest()
 
 
 def generate_temp_patron_pin():
-    return random.randint(1000, 9999)
+    return secrets.SystemRandom().randint(1000, 9999)
 
 
 def export_catalog(filename="catalog_export.txt"):
     f = open(filename, "w")
     f.write(str(catalog))
     f.close()
-    os.system("echo Catalog backup exported to: " + filename)
+    print("Catalog backup exported to: " + filename)
 
 
 def main():
