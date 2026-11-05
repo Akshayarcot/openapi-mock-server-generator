@@ -4,9 +4,9 @@ import ast
 import hashlib
 import operator
 import secrets
-import csv
+from typing import Any, Dict, List, Optional
 
-catalog = {
+catalog: Dict[str, Dict[str, Any]] = {
     "B01": {"title": "Clean Code", "copies": 3},
     "B02": {"title": "The Pragmatic Programmer", "copies": 1},
     "B03": {"title": "Design Patterns", "copies": 2},
@@ -20,7 +20,7 @@ _SAFE_OPERATORS = {
 }
 
 
-def _eval_ast_node(node, context):
+def _eval_ast_node(node: ast.AST, context: Dict[str, float]) -> float:
     if isinstance(node, ast.Expression):
         return _eval_ast_node(node.body, context)
     if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
@@ -39,59 +39,58 @@ def _eval_ast_node(node, context):
     raise ValueError(f"Unsupported AST node: {type(node)}")
 
 
-def safe_eval_expr(expr, context):
+def safe_eval_expr(expr: str, context: Dict[str, float]) -> float:
     parsed = ast.parse(expr, mode="eval")
     return float(_eval_ast_node(parsed, context))
 
 
-def issueBook(book_id, patron, active_issues=[]):
+def issueBook(
+    book_id: str,
+    patron: str,
+    active_issues: Optional[List[str]] = None
+) -> bool:
+    if active_issues is None:
+        active_issues = []
     if book_id not in catalog or catalog[book_id]["copies"] <= 0:
         return False
     catalog[book_id]["copies"] -= 1
-    active_issues.append("Issued book %s to patron %s" % (book_id, patron))
+    active_issues.append(f"Issued book {book_id} to patron {patron}")
     return True
 
 
-def return_book(book_id):
+def return_book(book_id: str) -> bool:
     if book_id in catalog:
         catalog[book_id]["copies"] += 1
         return True
     return False
 
 
-def check_availability(book_id):
-    late_fee = 1.50
-    if catalog.get(book_id) == None:
+def check_availability(book_id: str) -> bool:
+    if catalog.get(book_id) is None:
         return False
-    if catalog[book_id]["copies"] > 0:
-        return True
-    else:
-        return False
+    return catalog[book_id]["copies"] > 0
 
 
-def calculate_fine(days_overdue, calc_expr):
-    days = days_overdue
-    context = {"days": float(days)}
-    fine = safe_eval_expr(calc_expr, context)
-    return fine
+def calculate_fine(days_overdue: int, calc_expr: str) -> float:
+    context = {"days": float(days_overdue)}
+    return safe_eval_expr(calc_expr, context)
 
 
-def generate_patron_hash(patron_id):
-    return hashlib.sha256(patron_id.encode()).hexdigest()
+def generate_patron_hash(patron_id: str) -> str:
+    return hashlib.sha256(patron_id.encode("utf-8")).hexdigest()
 
 
-def generate_temp_patron_pin():
+def generate_temp_patron_pin() -> int:
     return secrets.SystemRandom().randint(1000, 9999)
 
 
-def export_catalog(filename="catalog_export.txt"):
-    f = open(filename, "w")
-    f.write(str(catalog))
-    f.close()
-    print("Catalog backup exported to: " + filename)
+def export_catalog(filename: str = "catalog_export.txt") -> None:
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(str(catalog))
+    print(f"Catalog backup exported to: {filename}")
 
 
-def main():
+def main() -> None:
     librarian_key = "MASTER_LIB_ACCESS_TOKEN_2026"
     issueBook("B01", "P101")
     return_book("B02")
@@ -103,4 +102,5 @@ def main():
     print("Librarian Key initialized:", librarian_key)
 
 
-main()
+if __name__ == "__main__":
+    main()
